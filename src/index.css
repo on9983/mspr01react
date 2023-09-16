@@ -2,6 +2,15 @@
  
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+/*   color variables */
+:root{
+    --clr-primary: #d50000;
+    --clr-primary-hover: #29e6a7;
+    --clr-primary-dark: #039d69;
+    --clr-gray300: #e1e5ee;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -20,24 +29,28 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; 
-  padding: 1rem 0.5rem;
+    width:100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    align-items: center;
+    min-height: 100vh; 
+    padding: 1rem 0.5rem;
 }
 
 section {
-    width: 100%;
-    max-width: 420px;
-    min-height: 400px;
+    width:100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
     background-color: rgba(0,0,0,0.4);
 }
+/* @media (min-width: 768px) {
+    section {
+        width: 35rem;
+    }
+} */
 
 form {
     display: flex;
@@ -113,4 +126,58 @@ button {
 
 .line {
     display: inline-block;
+}
+
+
+/* CARTES */
+
+.NioQuadriage {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 8rem));
+    gap: 1rem;
+    justify-content: center;
+}
+
+.NioCard {
+    padding: .5rem 0;
+    overflow: hidden;
+    box-shadow: 0 2px 20px var(--clr-gray300);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+    background-color: rgba(0,0,0,0.4);
+}
+.NioCardImage {
+    max-height: 9rem;
+    max-width: 9rem;
+    object-fit: cover;
+}
+.NioCardTitle {
+    padding: .5rem;
+    font-size: 14px;
+}
+.NioCardDescription {
+    padding: 0 .5rem;
+    font-size: 10px;
+}
+.NioCardBtn {
+    padding: .5rem;
+    font-family: inherit;
+    font-weight: bold;
+    margin: .5rem;
+    border: 2px solid var(--clr-primary);
+    background: transparent;
+    color: var(--clr-primary);
+    border-radius: 2rem;
+    transition: background 200ms ease-in, color 200ms ease-in;
+}
+.NioCard:hover {
+    transform: scale(1.02);
+}
+.NioCard:hover .NioCardBtn {
+    background: var(--clr-primary);
+    color: white;
 }

@@ -8,6 +8,7 @@ import Missing from './Pages/Missing';
 import Unauthorized from './Pages/Unauthorized';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
+import MesPlantes from './Pages/MesPlantes';
 
 const ROLES = {
   'User': 'ROLE_USER',
@@ -43,7 +44,7 @@ function App() {
             {/* we want to protect these routes */}
             <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
               <Route path="/" element={<Home />} />
-              <Route path="/listDesPlantes" element={<Home />} />
+              <Route path="/listDesPlantes" element={<MesPlantes />} />
             </Route>
 
             {/* catch all */}

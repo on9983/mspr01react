@@ -97,10 +97,30 @@ const Inscription = () => {
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
-          console.log(data.token);
-          if(data.token == "G&GGHYJ&58" ){
-            setSuccess(true);
+            console.log(data);
+            console.log(data.token);
+            if(data.token == "G&GGHYJ&58" ){
+            // OK send info à main server 
+            fetch("http://127.0.0.1:8003/registerJson", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials:true,
+                body: JSON.stringify ({
+                    "username": user,
+                    "token": "ALOWED4859682QKL"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(data.token);
+                if(data.token == "FING&GGHYJ&759" ){
+                    setSuccess(true);
+                }
+            })
+            
           }
           
         })

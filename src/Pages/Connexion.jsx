@@ -83,16 +83,16 @@ const Connexion = () => {
 
     const indentifieur = async () => {
         try {
-            fetch("http://127.0.0.1:8004/login/jsonLogin", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            withCredentials:true,
-            body: JSON.stringify ({
-                "username": user,
-                "password": pwd
-            })
+            fetch("http://127.0.0.1:8004/jsonLogin", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials:true,
+                body: JSON.stringify ({
+                    "username": user,
+                    "password": pwd
+                })
             })
             .then(response => response.json())
             .then(data => {
@@ -100,11 +100,32 @@ const Connexion = () => {
                 console.log(data.token);
                 
                 if(data.token == "G&GGHYJ&56" ){
-                    setSuccess(true);
-                    const accessToken = data?.token;
-                    const roles = data?.roles;
-                    setAuth({ user, pwd, roles, accessToken });
-                    navigate(from, { replace: true });
+                    // OK send info à main server 
+                    fetch("http://127.0.0.1:8003/jsonLogin", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials:true,
+                        body: JSON.stringify ({
+                            "username": 'systema_LOGIN@fg.fg',
+                            "password": 'SSDEersystema_QUOPRO@fgfgAADE&de'
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        console.log(data.token);
+                        localStorage.setItem("token", data.token);
+                        if(data.token == "FING&GGHYJ&485" ){
+                            setSuccess(true);
+                            const accessToken = data?.token;
+                            const roles = data?.roles;
+                            setAuth({ user, pwd, roles, accessToken });
+                            navigate(from, { replace: true });
+                        }
+                    })
+
                 }
             })
         } catch (err) {
@@ -140,7 +161,7 @@ const Connexion = () => {
                             type="text"
                             id="username"
                             ref={userRef}
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
@@ -161,6 +182,7 @@ const Connexion = () => {
                         <input
                             type="password"
                             id="password"
+                            autoComplete="on"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
